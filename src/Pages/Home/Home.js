@@ -25,6 +25,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import AccessTimeSharpIcon from '@mui/icons-material/AccessTimeSharp';
 import EventAvailableSharpIcon from '@mui/icons-material/EventAvailableSharp';
+import Stack from '@mui/material/Stack';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
@@ -57,7 +59,7 @@ export default function Home() {
                     <div key={index} className="col-md-6 col-xl-3 cardGlobalRes mt-4" >
                         <NavLink to={`/chitiet/${course.maKhoaHoc}`} className="gradient-border">
                             <div>
-                                <img src={course.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://ectimes.files.wordpress.com/2019/03/cac-ngon-ngu-lap-trinh-pho-bien-2.jpg" }} alt="" style={{ width: "100%", height: "150px", objectFit: "cover" }} />
+                                <img src={course.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://ectimes.files.wordpress.com/2019/03/cac-ngon-ngu-lap-trinh-pho-bien-2.jpg" }} alt="" style={{ width: '100%', height: "150px", objectFit: "cover" }} />
                                 <div className="mt-1 text-center" >
                                     <h3 style={{ textShadow: '2px 2px 5px red' }} className="text-center">{course.tenKhoaHoc.length > 5 && course.tenKhoaHoc === '123123123' ? 'LAP TRINH WEB' : course.tenKhoaHoc}</h3>
                                     <button className="btn btn-danger mb-1">Đăng Kí</button>
@@ -67,113 +69,6 @@ export default function Home() {
                             </div>
                         </NavLink>
 
-                    </div>
-                )
-            }
-        })
-    }
-
-    const renderCourseStudent = () => {
-        return coursesList.map((course, index) => {
-            if (index > 3 && index <= 7) {
-                // console.log(course.hinhAnh);
-                return (
-                    <div key={index} className="col-md-6 col-xl-3 cardGlobalRes mt-4 ">
-                        <NavLink to={`/chitiet/${course.maKhoaHoc}`} className="cardGlobal">
-                            <img src={course.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://codelearn.io/Upload/Blog/moi-truong-node-js-browser-va-khac-biet-63745001344.3067.jpg" }} alt="" />
-                            <span className='stikerCard'>{course.tenKhoaHoc.length <= 10 ? course.tenKhoaHoc : "Lập trình web"}</span>
-                            <div className="cardBodyGlobal">
-                                <h6 className="">{course.moTa.length > 100 ? course.moTa.substr(0, 50) + '...' : 'Lập trình hiện đang là xu hướng trên toàn thế giới...'}</h6>
-                                <div className='cardIcon'>
-                                    <span><i className="far fa-clock"></i>8 giờ</span>
-                                    <span><i className="far fa-calendar-alt"></i>4 tuần</span>
-                                    <span><i className="fas fa-signal"></i>Tất cả</span>
-                                </div>
-                            </div>
-                            <div className='cardFooter'>
-                                <div className='titleMaker'>
-                                    <div className='imgCardFooter'><img className='' src={require('../../Assets/Img/ImgAvatar/avatar2.png').default} alt="" /></div>
-                                    <span className='ml-2 colorCardTitle'>Elon Musk</span>
-                                </div>
-                                <div>
-                                    <p>800.000<sup>đ</sup></p>
-                                    <p>400.000<sup>đ</sup><i className="fas fa-tag iconTag"></i></p>
-                                </div>
-
-                            </div>
-                            <div className='subCard'>
-                                <div className='subCardHead'>
-                                    <img src={require('../../Assets/Img/ImgAvatar/emoji.png').default} alt="" />
-                                    <span className='ml-1 colorCardTitle'>Elun Musk Ricard</span>
-                                </div>
-                                <h6>BOOTCAMP - LẬP TRÌNH FULL STACK TỪ ZERO ĐẾN CÓ VIỆC</h6>
-                                <p className='colorCardTitle'>Đã có hơn 6200 bạn đăng kí học và có việc làm thông qua chương trình đào tạo Bootcamp Lập trình Front End chuyên nghiệp. Khóa học 100% thực hành cường độ cao theo dự án thực tế và kết nối doanh nghiệp hỗ trợ tìm việc ngay sau khi học...</p>
-                                <div className='cardIcon'>
-                                    <span><i className="far fa-clock iconOclock"></i>8 giờ</span>
-                                    <span><i className="far fa-calendar-alt iconCalendar"></i>4 tuần</span>
-                                    <span><i className="fas fa-signal iconLevel"></i>Tất cả</span>
-                                </div>
-                                <button className='btnGlobal btnSubCard'><NavLink to={`/chitiet/${course.maKhoaHoc}`}>Xem chi tiết</NavLink></button>
-
-                            </div>
-                            <div className='cardSale'>
-                                <span>Yêu thích</span>
-                            </div>
-                        </NavLink>
-                    </div>
-
-                )
-            }
-        })
-    }
-
-    const renderCourseReact = () => {
-        return coursesList.map((course, index) => {
-            if (index > 7 && index <= 11) {
-                // console.log(course.maKhoaHoc);
-                return (
-                    <div key={index} className="col-md-6 col-xl-3 cardGlobalRes mt-4">
-                        <NavLink to={`/chitiet/${course.maKhoaHoc}`} className="cardGlobal">
-                            <img src={course.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://canhme.com/wp-content/uploads/2018/09/Nodejs.png" }} alt="" />
-                            <span className='stikerCard'>{course.tenKhoaHoc.length <= 10 ? course.tenKhoaHoc : "Lập trình web"}</span>
-                            <div className="cardBodyGlobal">
-                                <h6 className="">{course.moTa.length > 100 ? course.moTa.substr(0, 50) + '...' : 'Lập trình hiện đang là xu hướng trên toàn thế giới...'}</h6>
-                                <div className='cardIcon'>
-                                    <span><i className="far fa-clock iconOclock"></i>8 giờ</span>
-                                    <span><i className="far fa-calendar-alt iconCalendar"></i>4 tuần</span>
-                                    <span><i className="fas fa-signal iconLevel"></i>Tất cả</span>
-                                </div>
-                            </div>
-                            <div className='cardFooter'>
-                                <div className='titleMaker'>
-                                    <div className='imgCardFooter'><img className='' src={require('../../Assets/Img/ImgAvatar/avatar2.png').default} alt="" /></div>
-                                    <span className='ml-2 colorCardTitle'>Elon Musk</span>
-                                </div>
-                                <div>
-                                    <p>800.000<sup>đ</sup></p>
-                                    <p>400.000<sup>đ</sup><i className="fas fa-tag iconTag"></i></p>
-                                </div>
-
-                            </div>
-                            <div className='subCard'>
-                                <div className='subCardHead'>
-                                    <img src={require('../../Assets/Img/ImgAvatar/emoji.png').default} alt="" />
-                                    <span className='ml-1 colorCardTitle'>Elun Musk Ricard</span>
-                                </div>
-                                <h6>BOOTCAMP - LẬP TRÌNH FULL STACK TỪ ZERO ĐẾN CÓ VIỆC</h6>
-                                <p className='colorCardTitle'>Đã có hơn 6200 bạn đăng kí học và có việc làm thông qua chương trình đào tạo Bootcamp Lập trình Front End chuyên nghiệp. Khóa học 100% thực hành cường độ cao theo dự án thực tế và kết nối doanh nghiệp hỗ trợ tìm việc ngay sau khi học...</p>
-                                <div className='cardIcon'>
-                                    <span><i className="far fa-clock iconOclock"></i>8 giờ</span>
-                                    <span><i className="far fa-calendar-alt iconCalendar"></i>4 tuần</span>
-                                    <span><i className="fas fa-signal iconLevel"></i>Tất cả</span>
-                                </div>
-                                <button className='btnGlobal btnSubCard'><NavLink to={`/chitiet/${course.maKhoaHoc}`}>Xem chi tiết</NavLink></button>
-
-                            </div>
-                            <div className='cardSale'>
-                                <span>Yêu thích</span>
-                            </div>
-                        </NavLink>
                     </div>
                 )
             }
@@ -300,6 +195,15 @@ export default function Home() {
                 );
             }
         })
+    }
+
+
+    const renderLinear = () => {
+        return (
+            <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
+                <LinearProgress color="success" />
+            </Stack>
+        )
     }
 
     useEffect(() => {
@@ -458,6 +362,7 @@ export default function Home() {
                         {renderCoursePopular()}
                     </div>
                 </div>
+                
                 {/* Course Student */}
                 <div className="container-a text-center mt-5">
                     <h3><a href="">Khóa học tham khảo</a></h3>
@@ -466,171 +371,18 @@ export default function Home() {
                     </div>
                 </div>
             </div >
+
             {/* Box Number */}
             <div className="d-flex justify-content-center mt-5">
-                
+
                 <div className="row">
-                <div className="col-12 text-center">
-                    <h3>KHOÁ FRONT-END</h3>
-                </div>
+                    <div className="col-12 text-center">
+                        <h3>KHOÁ FRONT-END</h3>
+                    </div>
                     {renderFE()}
                 </div>
             </div>
 
-            {/* Top Rate Instructor */}
-            <div className='mt-5 instrutorContainer'>
-                <h6><a href="">Giảng viên hàng đầu</a></h6>
-                <input type="checkbox" id='sliderInstrutors' hidden />
-                <div className='instrutorItem'>
-                    <div className='row mt-4'>
-                        <div className="col-lg-2 col-md-3 col-sm-6 col-12">
-                            <div className='instrutorContent'>
-                                <img src={require('../../Assets/Img/imgInstrutors/instrutor5.jpg').default} alt="" />
-                                <h6>Big DadMoon</h6>
-                                <div className='textReviewRole'>
-                                    <p>Chuyên gia lĩnh vực</p>
-                                    <p>lập trình</p>
-                                </div>
-                                <p className='reviewMentor'>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <span className='textStar'>  4.9</span>
-                                </p>
-                                <span className='textReviewBot'>100 Đánh giá</span>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 col-sm-6 col-12">
-                            <div className='instrutorContent'>
-                                <img src={require('../../Assets/Img/imgInstrutors/instrutor6.jpg').default} alt="" />
-                                <h6>IcarDi MenBor</h6>
-                                <div className='textReviewRole'>
-                                    <p>Chuyên gia ngôn ngữ</p>
-                                    <p>Vue Js</p>
-                                </div>
-                                <p className='reviewMentor'>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <span className='textStar'>  4.9</span>
-                                </p>
-                                <span className='textReviewBot'>100 Đánh giá</span>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 col-sm-6 col-12">
-                            <div className='instrutorContent'>
-                                <img src={require('../../Assets/Img/imgInstrutors/instrutor7.jpg').default} alt="" />
-                                <h6>Bladin Slaham</h6>
-                                <div className='textReviewRole'>
-                                    <p>Chuyên gia hệ thống</p>
-                                    <p>máy tính</p>
-                                </div>
-                                <p className='reviewMentor'>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <span className='textStar'>  4.9</span>
-                                </p>
-                                <span className='textReviewBot'>100 Đánh giá</span>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 col-sm-6 col-12">
-                            <div className='instrutorContent'>
-                                <img src={require('../../Assets/Img/imgInstrutors/instrutor8.jpg').default} alt="" />
-                                <h6>Chris Andersan</h6>
-                                <div className='textReviewRole'>
-                                    <p>Chuyên gia lĩnh vực</p>
-                                    <p>Full Skill</p>
-                                </div>
-                                <p className='reviewMentor'>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <span className='textStar'>  4.9</span>
-                                </p>
-                                <span className='textReviewBot'>100 Đánh giá</span>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 col-sm-6 col-12">
-                            <div className='instrutorContent'>
-                                <img src={require('../../Assets/Img/imgInstrutors/instrutor9.jpg').default} alt="" />
-                                <h6>VueLo Gadi</h6>
-                                <div className='textReviewRole'>
-                                    <p>Chuyên gia lĩnh vực</p>
-                                    <p>Phân tích</p>
-                                </div>
-                                <p className='reviewMentor'>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <span className='textStar'>  4.9</span>
-                                </p>
-                                <span className='textReviewBot'>100 Đánh giá</span>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 col-sm-6 col-12">
-                            <div className='instrutorContent'>
-                                <img src={require('../../Assets/Img/imgInstrutors/instrutor10.jpg').default} alt="" />
-                                <h6>Hoàng Nam</h6>
-                                <div className='textReviewRole'>
-                                    <p>Chuyên gia lĩnh vực</p>
-                                    <p>PHP</p>
-                                </div>
-                                <p className='reviewMentor'>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <span className='textStar'>  4.9</span>
-                                </p>
-                                <span className='textReviewBot'>100 Đánh giá</span>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-2 col-md-3 col-sm-6 col-12">
-                            <div className='instrutorContent'>
-                                <div className="card2"></div>
-                                <img src={'https://i.pinimg.com/originals/28/d2/e6/28d2e684e7859a0dd17fbd0cea00f8a9.jpg'} alt="" />
-                                <h6>David Ngô Savani</h6>
-                                <div className='textReviewRole'>
-                                    <p>Chuyên gia lĩnh vực</p>
-                                    <p>Front End</p>
-                                </div>
-                                <p className='reviewMentor'>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <i className="fas fa-star"></i>
-                                    <span className='textStar'>  4.9</span>
-                                </p>
-                                <span className='textReviewBot'>100 Đánh giá</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='sliderDot'>
-                    <div className='dotLeft'>
-                        <label htmlFor="sliderInstrutors" className='labelDotLeft'></label>
-                        <div className='layDotLeft'></div>
-                    </div>
-                    <div className='dotRight'>
-                        <label htmlFor="sliderInstrutors" className='labelDotRight'></label>
-                        <div className='layDotRight'></div>
-                    </div>
-                </div>
-            </div>
 
         </>
     )
