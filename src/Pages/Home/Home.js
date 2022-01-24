@@ -4,9 +4,49 @@ import { NavLink } from 'react-router-dom';
 import CountupNumber from '../../component/CountUp/CountupNumber'
 import { getListCourse } from '../../Redux/action/CourseAction';
 import './Home.css'
-import { Carousel } from 'antd';
+// import { Carousel } from 'antd';
+// import { Card, Avatar } from 'antd';
+// import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { styled } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Collapse from '@mui/material/Collapse';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { red } from '@mui/material/colors';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ShareIcon from '@mui/icons-material/Share';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import AccessTimeSharpIcon from '@mui/icons-material/AccessTimeSharp';
+import EventAvailableSharpIcon from '@mui/icons-material/EventAvailableSharp';
+
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+
 export default function Home() {
     const { coursesList } = useSelector(state => state.CourseReducer)
+    const [value, setValue] = React.useState(4);
+    const [expanded, setExpanded] = useState(false);
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+
+    const ExpandMore = styled((props) => {
+        const { expand, ...other } = props;
+        return <IconButton {...other} />;
+    })(({ theme, expand }) => ({
+        transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    }));
     // console.log(coursesList);
     const dispatch = useDispatch()
 
@@ -166,6 +206,98 @@ export default function Home() {
                         </NavLink>
                     </div>
                 )
+            }
+        })
+    }
+
+    const renderFE = () => {
+        return coursesList.map((course, index) => {
+            var days = 1;
+            var newDate = new Date(Date.now() + days * 24 * 60 * 60 * 1000);
+            if (index > 7 && index <= 11) {
+                return (
+                    <div className="col-md-4 col-xl-3 mt-2 cardGlobalRes">
+                        <Card sx={{ maxWidth: 345 }}>
+                            <NavLink to={`/chitiet/${course.maKhoaHoc}`}>
+
+                                <CardHeader
+                                    avatar={
+                                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src="https://picsum.photos/200/300?random=1">
+                                            R
+                                        </Avatar>
+                                    }
+                                    action={
+                                        <IconButton aria-label="settings">
+                                            <MoreVertIcon />
+                                        </IconButton>
+                                    }
+                                    title="Shrimp and Chorizo Paella"
+                                    subheader={`${newDate}`}
+                                />
+                                <CardMedia
+                                    component="img"
+                                    height="194"
+                                    image="https://canhme.com/wp-content/uploads/2018/09/Nodejs.png"
+                                    alt="Paella dish"
+                                />
+                                <CardContent>
+                                    <Typography variant="body2" color="text.secondary">
+                                        <Box
+                                            sx={{
+                                                '& > legend': { mt: 2 },
+                                            }}
+                                        >
+                                            <Typography component="legend"><h4> {course.tenKhoaHoc.length <= 10 && course.tenKhoaHoc !== 'Học khỉ' ? course.tenKhoaHoc : "Lập trình web"}</h4></Typography>
+                                            <Rating name="read-only" value={value} readOnly />
+                                            <Typography component="legend">
+                                                <div className="row">
+                                                    <div className="col-6">
+                                                        <h3 className="display-4"><MonetizationOnIcon className="text-warning" />50</h3>
+                                                    </div>
+                                                    <div className="col-6">
+                                                        <AccessTimeSharpIcon style={{ fontSize: "35px" }} className="text-warning display-3" /> 100 <br />
+                                                        <EventAvailableSharpIcon style={{ fontSize: "35px" }} className="text-warning display-3" /> 4
+                                                    </div>
+                                                </div>
+                                            </Typography>
+                                        </Box>
+                                    </Typography>
+                                </CardContent>
+                            </NavLink>
+
+                            <CardActions disableSpacing>
+                                <IconButton aria-label="add to favorites">
+                                    <FavoriteBorderIcon />
+                                </IconButton>
+                                <IconButton aria-label="share">
+                                    <ShareIcon />
+                                </IconButton>
+                                <ExpandMore
+                                    expand={expanded}
+                                    onClick={handleExpandClick}
+                                    aria-expanded={expanded}
+                                    aria-label="show more"
+                                >
+                                    <ExpandMoreIcon />
+                                </ExpandMore>
+                            </CardActions>
+                            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                <CardContent>
+                                    <Typography paragraph>CÁC ĐIỂM SÁNG CỦA NGHỀ :</Typography>
+                                    <Typography paragraph>
+                                        Ngành IT ở Việt Nam đang thiếu hụt rất nhiều nhân sự, nghĩa là số lượng đang không đáp được nhu cầu. Vì thế mà các công ty họ phải đưa ra các chính sách tốt để thu hút, hoặc giữ chân các nhân sự IT chất lượng.
+                                    </Typography>
+                                    <Typography paragraph>
+                                        Lập trình là một nghề “toàn cầu”, một trang web được lập trình tại Việt Nam cũng giống như một trang web được lập trình tại Mỹ, Úc, Canada. Chỉ cần có Tiếng Anh (đương nhiên là cả trình độ chuyên môn nữa) là bạn có thể làm việc ở nhiều quốc gia trên thế giới.
+
+                                        Lập trình cũng là một công việc lý tưởng để “Work from home”, bạn có thể đang ăn phở ở quê nhưng lại làm việc cho một công ty ở xứ ăn “Hăm bơ gơ”. Sống ở Việt Nam, nhưng thu nhập lại ở Mỹ. Ấy, đọc câu này nhiều bạn chắc sẽ ảo tưởng nghĩ thế này thì nhanh giàu lắm. Việc sống ở Việt nhưng thu nhập ở Mỹ là điều có thật, nhưng nó cũng tỷ lệ thuận với công sức bạn bỏ ra để vượt qua các khó khăn như khác ngôn ngữ, khác múi giờ, khác văn hóa, không tiện trao đổi. Nên nhớ “có làm thì mới có ăn”, nếu không người ta đã giàu hết rồi.
+                                    </Typography>
+                                </CardContent>
+                            </Collapse>
+                        </Card>
+                    </div>
+
+                );
             }
         })
     }
@@ -333,16 +465,17 @@ export default function Home() {
                         {renderCoures()}
                     </div>
                 </div>
-                {/* Course Student */}
-                <div className='mt-5 text-center'>
-                    <h3><a href="">Khóa học Front End</a></h3>
-                    <div className='row'>
-                        {renderCourseReact()}
-                    </div>
-                </div>
             </div >
             {/* Box Number */}
-
+            <div className="d-flex justify-content-center mt-5">
+                
+                <div className="row">
+                <div className="col-12 text-center">
+                    <h3>KHOÁ FRONT-END</h3>
+                </div>
+                    {renderFE()}
+                </div>
+            </div>
 
             {/* Top Rate Instructor */}
             <div className='mt-5 instrutorContainer'>
@@ -497,7 +630,7 @@ export default function Home() {
                         <div className='layDotRight'></div>
                     </div>
                 </div>
-            </div>            
+            </div>
 
         </>
     )
