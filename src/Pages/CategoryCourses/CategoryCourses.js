@@ -73,10 +73,6 @@ export default function CategoryCourses(props) {
     return (
         <>
             <section className=''>
-                <div className='titleCourse'>
-                    <h3>Khóa học theo danh mục</h3>
-                    <p>Hãy chọn khóa học mong muốn !!!</p>
-                </div>
                 <div className='listCourseCategory'>
                     <div className='courseCateName'>
                         <btn className='courseCategoryBtn'>

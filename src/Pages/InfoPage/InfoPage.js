@@ -11,7 +11,7 @@ export default function InfoPage(props) {
     const { credentials, userPersonalInfo } = useSelector(state => state.UserReducer)
 
     let { chiTietKhoaHocGhiDanh, taiKhoan, maLoaiNguoiDung } = userPersonalInfo
-  
+
     let loginAccount = JSON.parse(localStorage.getItem('credentials'))
 
     const openTab = (e, id) => {
@@ -56,17 +56,14 @@ export default function InfoPage(props) {
                                     <i className="fas fa-star"></i>
                                     <i className="fas fa-star"></i>
                                 </p>
-                                <div className=''>
-                                    <img className='imgNetFooter' src={require('../../Assets/Img/imgInstrutors/instrutor10.jpg').default} alt="" />
-                                    <span className='ml-2'>Nguyễn Nam</span>
+                                <div className='text-right'>
+                                    <button onClick={() => {
+                                        const action = userCancelCourse(course.maKhoaHoc)
+                                        dispatch(action)
+                                    }} className='btn btn-danger'>Hủy khóa học</button>
                                 </div>
                             </div>
-                            <div className='col-xl-2 col-lg-2 cancelNet'>
-                                <button onClick={() => {
-                                    const action = userCancelCourse(course.maKhoaHoc)
-                                    dispatch(action)
-                                }} className='btnGlobal'>Hủy khóa học</button>
-                            </div>
+
                         </div>
                     </div>
                 )
@@ -117,213 +114,340 @@ export default function InfoPage(props) {
         dispatch(getUserInfo)
     }, [])
 
+
+
     return (
-        <>
-            <section className='infoPage'>
-                <div className='titleCourse'>
-                    <h3>Thông tin cá nhân</h3>
-                    <p>Thông tin học viên</p>
-                </div>
-                <div className='infoPageContent'>
-                    <div className='row '>
-                        <div className='col-lg-3 col-md-4'>
-                            <div className='infoLeft'>
-                                <img src={credentials.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://cdn.dribbble.com/users/2364329/screenshots/6676961/02.jpg?compress=1&resize=800x600" }} alt="" />
-                                <h6>Robert Nguyễn</h6>
-                                <p>Lập trình viên Front-end</p>
-                                <button className='btnInfo'>Hồ sơ cá nhân</button>
-                            </div>
-                        </div>
-                        <div className='col-lg-9 col-md-8'>
-                            <div className='infoRight'>
-                                {/* <!-- Tab links --> */}
-                                <div class="tab">
-                                    <button class="tabLink active" onClick={(e) => openTab(e, "infoPersonal")}>Thông tin cá nhân</button>
-
-                                    <button class="tabLink" onClick={(e) => openTab(e, "infoCourse")}>Khóa học</button>
-                                </div>
-
-                                {/* <!-- Tab content --> */}
-                                <div id="infoPersonal" class="tabContent active" >
-                                    {/* Tab active */}
-                                    {/* UserInfo */}
-                                    <section className='userInfo'>
-                                        <div className='userInfoTop'>
-                                            <div className='row'>
-                                                <div className="col-md-7">
-                                                    <div>
-                                                        <p>Email:<span class="ml-2">{userPersonalInfo.email}</span></p>
-                                                        <p>Họ và tên: <span class="ml-2">{userPersonalInfo.hoTen}</span></p>
-                                                        <p>Số điện thoại: <span class="ml-2">{userPersonalInfo.soDt ? userPersonalInfo.soDt : userPersonalInfo.soDT}</span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <p>Tài khoản: <span class="ml-2">{userPersonalInfo.taiKhoan}</span></p>
-                                                    <p>Nhóm: <span class="ml-2">{userPersonalInfo.maNhom}</span>
-                                                    </p>
-                                                    <p>Đối tượng: <span class="ml-2">{userPersonalInfo.maLoaiNguoiDung === "HV" ? " Học viên" : " Giáo viên"}</span></p>
-                                                    <button data-toggle="modal" data-target="#myModal" className='btnGlobal'>Cập nhật</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className='userInfoBot'>
-                                            <h4>Kĩ năng của tôi</h4>
-                                            <div className='row'>
-                                                <div className='skillAll col-xl-8 col-lg-6'>
-                                                    <div className='mySkill skillBtnHtml'>
-                                                        <button className='skillBtnCustom'>html</button>
-                                                        <div class="progress">
-                                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: "100%" }}></div>
-                                                        </div>
-                                                    </div>
-                                                    <div className='mySkill skillBtnCss '>
-                                                        <button className='skillBtnCustom skillBtnHtml'>css</button>
-                                                        <div class="progress">
-                                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: "75%" }}></div>
-                                                        </div>
-                                                    </div>
-                                                    <div className='mySkill skillBtnJs'>
-                                                        <button className='skillBtnCustom '>js</button>
-                                                        <div class="progress">
-                                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: "50%" }}></div>
-                                                        </div>
-                                                    </div>
-                                                    <div className='mySkill skillBtnReact'>
-                                                        <button className='skillBtnCustom skillBtnHtml'>react</button>
-                                                        <div class="progress">
-                                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: "80%" }}></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className='col-xl-4 col-lg-6'>
-                                                    <div className='timeStudy'>
-                                                        <div className="timeStudyItem">
-                                                            <i classNameName='fas fa-user-clock mr-2'></i>
-                                                            <div>
-                                                                <h6>Giờ học</h6>
-                                                                <p>80</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="timeStudyItem">
-                                                            <i className="fas fa-layer-group mr-2"></i>
-                                                            <div>
-                                                                <h6>Điểm tổng</h6>
-                                                                <p>80</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="timeStudyItem">
-                                                            <i className="fas fa-swatchbook mr-2"></i>
-                                                            <div>
-                                                                <h6>Buổi học</h6>
-                                                                <p>40</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="timeStudyItem">
-                                                            <i className="fas fa-signal mr-2"></i>
-                                                            <div>
-                                                                <h6>Cấp độ</h6>
-                                                                <p>Trung cấp</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="timeStudyItem">
-                                                            <i className="fas fa-graduation-cap mr-2"></i>
-                                                            <div>
-                                                                <h6>Học lực</h6>
-                                                                <p>Khá</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="timeStudyItem">
-                                                            <i className="fas fa-book mr-2"></i>
-                                                            <div>
-                                                                <h6>Bài tập</h6>
-                                                                <p>100</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </section>
-                                </div>
-                                <div id="infoCourse" class="tabContent">
-                                    {/*CourseInfo  */}
-                                    <section className='myCourseInfo'>
-                                        <div className='findCourseNet'>
-                                            <h6>Khóa học của tôi</h6>
-                                            <form action="">
-                                                <input type="text" onChange={(e) => {
-                                                    setSearchTerm(e.target.value)
-                                                }} className='searchForm' placeholder='Tìm kiếm...' />
-                                            </form>
-                                        </div>
-                                        {RenderUserCourses()}
-
-                                    </section>
-                                </div>
+            <section className-="container">
+                <div className="row desktop">
+                    <div className="col-md-4  py-2 d-flex justify-content-center align-items-center">
+                        <div className="card" style={{ width: '20rem' }}>
+                            <img src={credentials.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://cdn.dribbble.com/users/2364329/screenshots/6676961/02.jpg?compress=1&resize=800x600" }} alt="" />
+                            <div className="card-body text-center">
+                                <h5 className="card-title">{credentials.hoTen}</h5>
+                                <p className="card-text text-warning">Front-End Developer</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                {/* Modal */}
-                <div className="modal fade" id="myModal"
-                style={{'paddingLeft':'0'}}>
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header modalUpdateHeader">
-                                <h5 className="modal-title">Chỉnh sửa thông tin cá nhân</h5>
-                                <button type="button" className="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <div className="modal-body modalUpdate">
-                                <form action="#" onSubmit={formik.handleSubmit}>
-                                    <h6>Họ và tên</h6>
-                                    <input
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
-                                        type="text" placeholder="Họ tên"
-                                        name='hoTen'
-                                        value={formik.values.hoTen} />
-                                    {formik.errors.hoTen && formik.touched.hoTen ? <div className='errorMessage'>{formik.errors.hoTen}</div> : <div className='message'></div>}
+                    <div className="col-md-8">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <span className="py-3 text-dark"> <i class="fa fa-user-circle"></i> Thông tin cá nhân </span>
+                                        </button>
+                                    </h2>
+                                </div>
 
-                                    <h6>Mật khẩu</h6>
-                                    <input
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
-                                        type="password" placeholder="Mật khẩu"
-                                        name='matKhau'
-                                        value={formik.values.matKhau} />
-                                    {formik.errors.matKhau && formik.touched.matKhau ? <div className='errorMessage' >{formik.errors.matKhau}</div> : <div className='message'></div>}
-
-                                    <h6>Email</h6>
-                                    <input
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
-                                        type="email" placeholder="Email"
-                                        name="email"
-                                        value={formik.values.email} />
-                                    {formik.errors.email && formik.touched.email ? <div className='errorMessage'>{formik.errors.email}</div> : <div className='message'></div>}
-
-                                    <h6>Số điện thoại</h6>
-                                    <input
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
-                                        type="phone" placeholder="Số điện thoại"
-                                        name='soDT'
-                                        value={formik.values.soDT} />
-                                    {formik.errors.soDT && formik.touched.soDT ? <div className='errorMessage'>{formik.errors.soDT}</div> : <div className='message'></div>}
-                                    
-                                    {/* <input type="file" /> */}
-
-                                    <div class="modal-footer">
-                                        <button type="submit" className="btnSubmit" >Hoàn thành</button>
-                                        <button type="button" className="btnSubmit btnClose" data-dismiss="modal">Đóng</button>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div>
+                                            <p>Email:<span class="ml-2">{userPersonalInfo.email}</span></p>
+                                            <p>Họ và tên: <span class="ml-2">{userPersonalInfo.hoTen}</span></p>
+                                            <p>Số điện thoại: <span class="ml-2">{userPersonalInfo.soDt ? userPersonalInfo.soDt : userPersonalInfo.soDT}</span></p>
+                                            <p>Tài khoản: <span class="ml-2">{userPersonalInfo.taiKhoan}</span></p>
+                                            <p>Nhóm: <span class="ml-2">{userPersonalInfo.maNhom}</span>
+                                            </p>
+                                            <p>Đối tượng: <span class="ml-2">{userPersonalInfo.maLoaiNguoiDung === "HV" ? " Học viên" : " Giáo viên"}</span></p>
+                                        </div>
                                     </div>
-                                </form>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="card">
+                                    <div className="card-header" id="headingTwo">
+                                        <h2 className="mb-0">
+                                            <button className="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+
+                                                <span className="py-3 text-warning"> <i class="fa fa-book-open"></i> Khoá học đã đăng kí </span>
+
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div className="card-body">
+                                            <section className='myCourseInfo'>
+                                                <div className='findCourseNet'>
+                                                    <form action="">
+                                                        <input type="text" onChange={(e) => {
+                                                            setSearchTerm(e.target.value)
+                                                        }} className='searchForm' placeholder='Tìm kiếm...' />
+                                                    </form>
+                                                </div>
+                                                {RenderUserCourses()}
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card">
+                                    <div className="card-header" id="headingThree">
+                                        <h2 className="mb-0">
+                                            <button className="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                <span className="py-3 text-success"> <i class="fa fa-medal"></i> Trình độ kĩ năng </span>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                        <div className="card-body">
+                                            <div className="container-fluid">
+                                                <div className="row mt-3">
+                                                    <div className="col-md-2 text-center">
+                                                        HTML
+                                                    </div>
+                                                    <div className="col-md-10">
+                                                        <div className="progress mt-1">
+                                                            <div className=" progress-bar progress-bar-striped" role="progressbar" style={{ width: '70%' }} aria-valuenow={10} aria-valuemin={0} aria-valuemax={100} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row mt-3">
+                                                    <div className="col-md-2 text-center">
+                                                        CSS
+                                                    </div>
+                                                    <div className="col-md-10">
+                                                        <div className="progress mt-1">
+                                                            <div className=" progress-bar progress-bar-striped" role="progressbar" style={{ width: '60%' }} aria-valuenow={10} aria-valuemin={0} aria-valuemax={100} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row mt-3">
+                                                    <div className="col-md-2 text-center">
+                                                        JS
+                                                    </div>
+                                                    <div className="col-md-10">
+                                                        <div className="progress mt-1">
+                                                            <div className=" progress-bar progress-bar-striped" role="progressbar" style={{ width: '100%' }} aria-valuenow={10} aria-valuemin={0} aria-valuemax={100} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row mt-3">
+                                                    <div className="col-md-2 text-center">
+                                                        React
+                                                    </div>
+                                                    <div className="col-md-10">
+                                                        <div className="progress mt-1">
+                                                            <div className=" progress-bar progress-bar-striped" role="progressbar" style={{ width: '88%' }} aria-valuenow={10} aria-valuemin={0} aria-valuemax={100} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-        </>
     )
 }
+
+
+// {/* <>
+//             <section className='infoPage'>
+//                 <div className='titleCourse'>
+//                     <h3>Thông tin cá nhân</h3>
+//                     <p>Thông tin học viên</p>
+//                 </div>
+//                 <div className='infoPageContent'>
+//                     <div className='row '>
+//                         <div className='col-lg-3 col-md-4 bg-warning rounded border-warning'>
+//                             <div className='infoLeft'>
+//                                 <img src={credentials.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://cdn.dribbble.com/users/2364329/screenshots/6676961/02.jpg?compress=1&resize=800x600" }} alt="" />
+//                                 <h6>{credentials.hoTen}</h6>
+//                                 <p>Front-End Developer</p>
+//                                 <button className='btnInfo'>Hồ sơ cá nhân</button>
+//                             </div>
+//                         </div>
+//                         <div className='col-lg-9 col-md-8'>
+//                             <div className='infoRight'>
+//                                 {/* <!-- Tab links --> */}
+//                                 <div class="tab">
+//                                     <button class="tabLink active" onClick={(e) => openTab(e, "infoPersonal")}>Thông tin cá nhân</button>
+
+//                                     <button class="tabLink" onClick={(e) => openTab(e, "infoCourse")}>Khóa học</button>
+//                                 </div>
+
+//                                 {/* <!-- Tab content --> */}
+//                                 <div id="infoPersonal" class="tabContent active" >
+//                                     {/* Tab active */}
+//                                     {/* UserInfo */}
+//                                     <section className='userInfo'>
+//                                         <div className='userInfoTop'>
+//                                             <div className='row'>
+//                                                 <div className="col-md-7">
+//                                                     <div>
+//                                                         <p>Email:<span class="ml-2">{userPersonalInfo.email}</span></p>
+//                                                         <p>Họ và tên: <span class="ml-2">{userPersonalInfo.hoTen}</span></p>
+//                                                         <p>Số điện thoại: <span class="ml-2">{userPersonalInfo.soDt ? userPersonalInfo.soDt : userPersonalInfo.soDT}</span></p>
+//                                                     </div>
+//                                                 </div>
+//                                                 <div class="col-md-5">
+//                                                     <p>Tài khoản: <span class="ml-2">{userPersonalInfo.taiKhoan}</span></p>
+//                                                     <p>Nhóm: <span class="ml-2">{userPersonalInfo.maNhom}</span>
+//                                                     </p>
+//                                                     <p>Đối tượng: <span class="ml-2">{userPersonalInfo.maLoaiNguoiDung === "HV" ? " Học viên" : " Giáo viên"}</span></p>
+//                                                     <button data-toggle="modal" data-target="#myModal" className='btnGlobal'>Cập nhật</button>
+//                                                 </div>
+//                                             </div>
+//                                         </div>
+//                                         <div className='userInfoBot'>
+//                                             <h4>Kĩ năng của tôi</h4>
+//                                             <div className='row'>
+//                                                 <div className='skillAll col-xl-8 col-lg-6'>
+//                                                     <div className='mySkill skillBtnHtml'>
+//                                                         <button className='skillBtnCustom'>html</button>
+//                                                         <div class="progress">
+//                                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: "100%" }}></div>
+//                                                         </div>
+//                                                     </div>
+//                                                     <div className='mySkill skillBtnCss '>
+//                                                         <button className='skillBtnCustom skillBtnHtml'>css</button>
+//                                                         <div class="progress">
+//                                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: "75%" }}></div>
+//                                                         </div>
+//                                                     </div>
+//                                                     <div className='mySkill skillBtnJs'>
+//                                                         <button className='skillBtnCustom '>js</button>
+//                                                         <div class="progress">
+//                                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: "50%" }}></div>
+//                                                         </div>
+//                                                     </div>
+//                                                     <div className='mySkill skillBtnReact'>
+//                                                         <button className='skillBtnCustom skillBtnHtml'>react</button>
+//                                                         <div class="progress">
+//                                                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: "80%" }}></div>
+//                                                         </div>
+//                                                     </div>
+//                                                 </div>
+//                                                 <div className='col-xl-4 col-lg-6'>
+//                                                     <div className='timeStudy'>
+//                                                         <div className="timeStudyItem">
+//                                                             <i classNameName='fas fa-user-clock mr-2'></i>
+//                                                             <div>
+//                                                                 <h6>Giờ học</h6>
+//                                                                 <p>80</p>
+//                                                             </div>
+//                                                         </div>
+//                                                         <div className="timeStudyItem">
+//                                                             <i className="fas fa-layer-group mr-2"></i>
+//                                                             <div>
+//                                                                 <h6>Điểm tổng</h6>
+//                                                                 <p>80</p>
+//                                                             </div>
+//                                                         </div>
+//                                                         <div className="timeStudyItem">
+//                                                             <i className="fas fa-swatchbook mr-2"></i>
+//                                                             <div>
+//                                                                 <h6>Buổi học</h6>
+//                                                                 <p>40</p>
+//                                                             </div>
+//                                                         </div>
+//                                                         <div className="timeStudyItem">
+//                                                             <i className="fas fa-signal mr-2"></i>
+//                                                             <div>
+//                                                                 <h6>Cấp độ</h6>
+//                                                                 <p>Trung cấp</p>
+//                                                             </div>
+//                                                         </div>
+//                                                         <div className="timeStudyItem">
+//                                                             <i className="fas fa-graduation-cap mr-2"></i>
+//                                                             <div>
+//                                                                 <h6>Học lực</h6>
+//                                                                 <p>Khá</p>
+//                                                             </div>
+//                                                         </div>
+//                                                         <div className="timeStudyItem">
+//                                                             <i className="fas fa-book mr-2"></i>
+//                                                             <div>
+//                                                                 <h6>Bài tập</h6>
+//                                                                 <p>100</p>
+//                                                             </div>
+//                                                         </div>
+//                                                     </div>
+//                                                 </div>
+//                                             </div>
+//                                         </div>
+
+//                                     </section>
+//                                 </div>
+//                                 <div id="infoCourse" class="tabContent">
+//                                     {/*CourseInfo  */}
+//                                     <section className='myCourseInfo'>
+//                                         <div className='findCourseNet'>
+//                                             <h6>Khóa học của tôi</h6>
+//                                             <form action="">
+//                                                 <input type="text" onChange={(e) => {
+//                                                     setSearchTerm(e.target.value)
+//                                                 }} className='searchForm' placeholder='Tìm kiếm...' />
+//                                             </form>
+//                                         </div>
+//                                         {RenderUserCourses()}
+
+//                                     </section>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>
+//                 {/* Modal */}
+//                 <div className="modal fade" id="myModal"
+//                     style={{ 'paddingLeft': '0' }}>
+//                     <div className="modal-dialog">
+//                         <div className="modal-content">
+//                             <div className="modal-header modalUpdateHeader">
+//                                 <h5 className="modal-title">Chỉnh sửa thông tin cá nhân</h5>
+//                                 <button type="button" className="close" data-dismiss="modal">&times;</button>
+//                             </div>
+//                             <div className="modal-body modalUpdate">
+//                                 <form action="#" onSubmit={formik.handleSubmit}>
+//                                     <h6>Họ và tên</h6>
+//                                     <input
+//                                         onBlur={formik.handleBlur}
+//                                         onChange={formik.handleChange}
+//                                         type="text" placeholder="Họ tên"
+//                                         name='hoTen'
+//                                         value={formik.values.hoTen} />
+//                                     {formik.errors.hoTen && formik.touched.hoTen ? <div className='errorMessage'>{formik.errors.hoTen}</div> : <div className='message'></div>}
+
+//                                     <h6>Mật khẩu</h6>
+//                                     <input
+//                                         onBlur={formik.handleBlur}
+//                                         onChange={formik.handleChange}
+//                                         type="password" placeholder="Mật khẩu"
+//                                         name='matKhau'
+//                                         value={formik.values.matKhau} />
+//                                     {formik.errors.matKhau && formik.touched.matKhau ? <div className='errorMessage' >{formik.errors.matKhau}</div> : <div className='message'></div>}
+
+//                                     <h6>Email</h6>
+//                                     <input
+//                                         onBlur={formik.handleBlur}
+//                                         onChange={formik.handleChange}
+//                                         type="email" placeholder="Email"
+//                                         name="email"
+//                                         value={formik.values.email} />
+//                                     {formik.errors.email && formik.touched.email ? <div className='errorMessage'>{formik.errors.email}</div> : <div className='message'></div>}
+
+//                                     <h6>Số điện thoại</h6>
+//                                     <input
+//                                         onBlur={formik.handleBlur}
+//                                         onChange={formik.handleChange}
+//                                         type="phone" placeholder="Số điện thoại"
+//                                         name='soDT'
+//                                         value={formik.values.soDT} />
+//                                     {formik.errors.soDT && formik.touched.soDT ? <div className='errorMessage'>{formik.errors.soDT}</div> : <div className='message'></div>}
+
+//                                     {/* <input type="file" /> */}
+
+//                                     <div class="modal-footer">
+//                                         <button type="submit" className="btnSubmit" >Hoàn thành</button>
+//                                         <button type="button" className="btnSubmit btnClose" data-dismiss="modal">Đóng</button>
+//                                     </div>
+//                                 </form>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>
+
+//             </section>
+//         </> */}

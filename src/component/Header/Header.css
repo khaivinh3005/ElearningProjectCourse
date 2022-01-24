@@ -74,9 +74,10 @@ ul.menuHeader li:hover i {
 }
 /* Text */
 .textE {
-    color: var(--colorGlobal);
+    color: var(--colorRed);
     font-size: 40px;
 }
+
 
 @font-face {
     font-family: "fontPoppin";

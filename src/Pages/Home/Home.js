@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import CountupNumber from '../../component/CountUp/CountupNumber'
 import { getListCourse } from '../../Redux/action/CourseAction';
 import './Home.css'
+import { Carousel } from 'antd';
 export default function Home() {
     const { coursesList } = useSelector(state => state.CourseReducer)
     // console.log(coursesList);
@@ -13,29 +14,19 @@ export default function Home() {
         return coursesList.map((course, index) => {
             if (index <= 3) {
                 return (
-                    <div key={index} className="col-md-6 col-xl-3 cardGlobalRes mt-4 cardEffect">
-                        <NavLink to={`/chitiet/${course.maKhoaHoc}`} className="cardGlobal">
-                            <img src={course.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://ectimes.files.wordpress.com/2019/03/cac-ngon-ngu-lap-trinh-pho-bien-2.jpg" }} alt="" />
-                            <span className='stikerCard'>{course.tenKhoaHoc.length > 5 ? course.tenKhoaHoc : "Lập trình web"}</span>
-                            <div className="cardBodyGlobal">
-                                <h6 className="">{course.moTa.length > 50 ? course.moTa.substr(0, 50) + '...' : 'Lập trình hiện đang là xu hướng trên toàn thế giới...'}</h6>
-                                <div className='titleMaker'>
-                                    <div className='imgCardFooter'><img className='' src={require('../../Assets/Img/ImgAvatar/avatar2.png').default} alt="" /></div>
-                                    <span className='ml-2 colorCardTitle'>Elon Musk</span>
+                    <div key={index} className="col-md-6 col-xl-3 cardGlobalRes mt-4" >
+                        <NavLink to={`/chitiet/${course.maKhoaHoc}`} className="gradient-border">
+                            <div>
+                                <img src={course.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://ectimes.files.wordpress.com/2019/03/cac-ngon-ngu-lap-trinh-pho-bien-2.jpg" }} alt="" style={{ width: "100%", height: "150px", objectFit: "cover" }} />
+                                <div className="mt-1 text-center" >
+                                    <h3 style={{ textShadow: '2px 2px 5px red' }} className="text-center">{course.tenKhoaHoc.length > 5 && course.tenKhoaHoc === '123123123' ? 'LAP TRINH WEB' : course.tenKhoaHoc}</h3>
+                                    <button className="btn btn-danger mb-1">Đăng Kí</button>
+
                                 </div>
-                            </div>
-                            <div className='cardFooter'>
-                                <div>
-                                    <p>800.000<sup>đ</sup></p>
-                                    <p>400.000<sup>đ</sup></p>
-                                </div>
-                                <div>
-                                    <i className="fas fa-star mr-1 textStar"></i>
-                                    <span className='textStar'>4.9</span>
-                                    <span className='colorCardTitle'>(7840)</span>
-                                </div>
+
                             </div>
                         </NavLink>
+
                     </div>
                 )
             }
@@ -47,16 +38,16 @@ export default function Home() {
             if (index > 3 && index <= 7) {
                 // console.log(course.hinhAnh);
                 return (
-                    <div key={index} className="col-md-6 col-xl-3 cardGlobalRes mt-4">
+                    <div key={index} className="col-md-6 col-xl-3 cardGlobalRes mt-4 ">
                         <NavLink to={`/chitiet/${course.maKhoaHoc}`} className="cardGlobal">
                             <img src={course.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://codelearn.io/Upload/Blog/moi-truong-node-js-browser-va-khac-biet-63745001344.3067.jpg" }} alt="" />
                             <span className='stikerCard'>{course.tenKhoaHoc.length <= 10 ? course.tenKhoaHoc : "Lập trình web"}</span>
                             <div className="cardBodyGlobal">
                                 <h6 className="">{course.moTa.length > 100 ? course.moTa.substr(0, 50) + '...' : 'Lập trình hiện đang là xu hướng trên toàn thế giới...'}</h6>
                                 <div className='cardIcon'>
-                                    <span><i className="far fa-clock iconOclock"></i>8 giờ</span>
-                                    <span><i className="far fa-calendar-alt iconCalendar"></i>4 tuần</span>
-                                    <span><i className="fas fa-signal iconLevel"></i>Tất cả</span>
+                                    <span><i className="far fa-clock"></i>8 giờ</span>
+                                    <span><i className="far fa-calendar-alt"></i>4 tuần</span>
+                                    <span><i className="fas fa-signal"></i>Tất cả</span>
                                 </div>
                             </div>
                             <div className='cardFooter'>
@@ -90,6 +81,7 @@ export default function Home() {
                             </div>
                         </NavLink>
                     </div>
+
                 )
             }
         })
@@ -148,6 +140,36 @@ export default function Home() {
         })
     }
 
+    const renderCoures = () => {
+        return coursesList.map((course, index) => {
+            if (index > 7 && index <= 11) {
+                return (
+                    <div className="col-md-4 col-xl-3 mt-2 cardGlobalRes">
+                        <NavLink to={`/chitiet/${course.maKhoaHoc}`} className="card">
+                            <div className="imgBx">
+                                <img src={course.hinhAnh} onError={(e) => { e.target.onerror = null; e.target.src = "https://canhme.com/wp-content/uploads/2018/09/Nodejs.png" }} />
+                            </div>
+                            <div className="contentBx">
+                                <h2>{course.tenKhoaHoc.length <= 10 && course.tenKhoaHoc !== 'Học khỉ' ? course.tenKhoaHoc : "Lập trình web"}</h2>
+                                <div className="size">
+                                    <h3>Price :</h3>
+                                    <span>4</span>
+                                    <span>0</span>
+                                    <span>0</span>
+                                    <span>K</span>
+                                </div>
+                                <div className="color">
+                                    <h6 className="text-white mt-1">BOOTCAMP - LẬP TRÌNH FULL STACK</h6>
+                                </div>
+                                <a href="#">Buy Now</a>
+                            </div>
+                        </NavLink>
+                    </div>
+                )
+            }
+        })
+    }
+
     useEffect(() => {
         dispatch(getListCourse)
     }, [])
@@ -155,216 +177,172 @@ export default function Home() {
     return (
         <>
             <div className='homePage'>
-                {/* Slider */}
-                <div className='row sliderHome'>
-                    <div className="col-lg-6 sloganBox">
-                        {/* Small box slder */}
-                        <div className='triangleTopRight'></div>
-                        <div className='smallBox smallboxLeftTop'></div>
-                        <div className='smallBox smallboxRightTop'></div>
-                        <div className='smallBox smallboxRightBottom'></div>
-                        <div className='smallBox smallboxRightBottom doubleBox'></div>
-                        {/* Slogan */}
-                        <div className='sloganContainer'>
-                            <div><img className='sliderPlaneImg' src={require('../../Assets/Img/imgSlider/paper_plane.png').default} alt="" /></div>
-                            <h1>Chào mừng</h1>
-                            <h1>đến với môi trường </h1>
-                            <h1>V<span>learning</span></h1>
-                            <button className='btnGlobal btnSlider mt-4'>Bắt đâu nào</button>
+
+                <div className="">
+                    <div id="carouselExampleIndicators" className="carousel slide position-relative" data-ride="carousel">
+                        <ol className="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to={0} className="active" />
+                            <li data-target="#carouselExampleIndicators" data-slide-to={1} />
+                            <li data-target="#carouselExampleIndicators" data-slide-to={2} />
+                        </ol>
+                        <div className="carousel-inner">
+                            <div className="carousel-item active">
+                                <img className="d-block" style={{ objectFit: "cover" }} height={'500px'} width={"100%"} src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y291cnNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="First slide" />
+                            </div>
+                            <div className="carousel-item ">
+                                <img className="d-block" style={{ objectFit: "cover" }} height={'500px'} width={"100%"} src='https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y291cnNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60' alt="Second slide" />
+                            </div>
+                            <div className="carousel-item h-100">
+                                <img className="d-block" style={{ objectFit: "cover" }} height={'500px'} width={"100%"} src='https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80' alt="Second slide" />
+                            </div>
+
+                        </div>
+                        <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span className="carousel-control-prev-icon" aria-hidden="true" />
+                            <span className="sr-only">Previous</span>
+                        </a>
+                        <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span className="carousel-control-next-icon" aria-hidden="true" />
+                            <span className="sr-only">Next</span>
+                        </a>
+                        <div className='row sliderHome position-absolute' style={{ top: 0, left: '50%' }}>
                         </div>
                     </div>
-                    {/* Slider Right */}
-                    <div className="col-lg-6">
-                        <div className='sliderRight'>
-                            <div className=''></div>
-                            <div>
-                                <img className='sliderMainImg' src={require('../../Assets/Img/imgSlider/slider2.png').default} alt="" />
-                                <img className='sliderSubImg sliderCodeImg' src={require('../../Assets/Img/imgSlider/code_slider.png').default} alt="" />
-                                <img className='sliderSubImg sliderMesImg ' src={require('../../Assets/Img/imgSlider/message_slider.png').default} alt="" />
-                                <img className='sliderSubImg sliderCloudImg' src={require('../../Assets/Img/imgSlider/clouds.png').default} alt="" />
-                                <img className='sliderSubImg sliderCloud2Img' src={require('../../Assets/Img/imgSlider/clouds.png').default} alt="" />
-                                <img className='sliderSubImg sliderCloud3Img' src={require('../../Assets/Img/imgSlider/clouds.png').default} alt="" />
+                    <div className='boxNumberContainer mt-5 ' style={{ borderRadius: "10px" }}>
+                        <div className='row'>
+                            <div className='col-lg-3 p-4 col-md-6'>
+                                <div className='boxNumber' >
+                                    <i class="fab fa-youtube" style={{ fontSize: "70px" }}></i>
+                                    <div className='textNumber'>
+                                        <CountupNumber end='9000' />
+                                    </div>
+                                    <p className='textNumberTitle'>Khoá học và video</p>
+                                </div>
+                            </div>
+                            <div className="col-lg-3 p-4 col-md-6">
+                                <div className='boxNumber'>
+                                    <i class="fa fa-user-graduate" style={{ fontSize: "70px" }}></i>
+                                    <div className='textNumber'>
+                                        <CountupNumber end='1000' />
+                                    </div>
+                                    <p className='textNumberTitle'>Học viên</p>
+                                </div>
+                            </div>
+                            <div className="col-lg-3 p-4 col-md-6">
+                                <div className='boxNumber'>
+                                    <i class="fa fa-clock" style={{ fontSize: "70px" }}></i>
+                                    <div className='textNumber'>
+                                        <CountupNumber end='33200' />
+                                    </div>
+                                    <p className='textNumberTitle'>Giờ học</p>
+                                </div>
+                            </div>
+                            <div className="col-lg-3 p-4 col-md-6">
+                                <div className='boxNumber'>
+                                    <i class="fa fa-chalkboard-teacher" style={{ fontSize: "70px" }}></i>
+                                    <div className='textNumber'>
+                                        <CountupNumber end='400' />
+                                    </div>
+                                    <p className='textNumberTitle'>Giảng viên</p>
+                                </div>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
                 {/* Course Info */}
                 <div className='infoCoureBox'>
-                    <div className='infoCourseHome'>
-                        <div className='infoItemHome infoLargeItem'>
-                            <div className='infoItemContent'>
-                                <h3>Khóa học</h3>
-                                <p><span>Học qua dự án thực tế</span>, học đi đôi với hành, không lý thuyết lan man, phân tích cội nguồn của vấn đề, xây dựng từ các ví dụ nhỏ đến thực thi một dự án lớn ngoài thực tế để học viên học xong làm được ngay</p>
-                                <ul>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Hơn 1000 bài tập và dự án thực tế</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Công nghệ cập nhật mới nhất</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Hình ảnh, ví dụ, bài giảng sinh động trực quan</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Tư duy phân tích, giải quyết vấn đề trong dự án</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Học tập kinh nghiệm, qui trình làm dự án, các qui chuẩn trong dự án</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Cơ hội thực tập tại các công ty lớn như FPT, Microsoft</span>
-                                    </li>
-                                </ul>
+                    <div className="text-center">
+                        <h3 className="py-3">3 Điểm Khác Biệt Tại E-Learning Giúp Bạn Thăng Tiến Trong Sự Nghiệp</h3>
+                    </div>
+                    <div className="border rounded" style={{ borderColor: "gray" }}>
+                        <div className="row">
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <img className="card-img-top" style={{ objectFit: "cover" }} src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNvdXJzZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" width={400} height={350} alt="" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card" style={{ border: "none" }}>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Học qua dự án, hiểu tận rễ vấn đề</h5>
+                                        <p class="card-text">E Learning đã xây dựng hệ thống bài giảng qua các dự án vô cùng thực tế, trực quan, sinh động, minh hoạ rõ ràng giúp hiểu rõ, hiểu sâu, nhớ dai, áp dụng thực tế tốt. Học qua dự án thực tế, học đi đôi với hành, không lý thuyết lan man, phân tích cội nguồn của vấn đề, xây dựng từ các ví dụ nhỏ đến thực thi một dự án lớn ngoài thực tế để học viên học xong làm được ngay.</p>
+                                        <a href="#" class="btn btn-primary mt-2">Đăng kí</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className='infoItemHome infoSmallItemA'>
-                            <div className='infoItemContent'>
-                                <h3>Lộ trình phù hợp</h3>
-                                <ul>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span> Lộ trình bài bản từ zero tới chuyên nghiệp, nâng cao</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Học, luyện tập code, kỹ thuật phân tích, soft skill</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Huấn luyện để phát triển năng lực và niềm đam mê lập trình</span>
-                                    </li>
-                                </ul>
+                    </div>
+
+                    <div className="border rounded mt-2" style={{ borderColor: "gray" }}>
+                        <div className="row">
+                            <div class="col-sm-6">
+                                <div class="card" style={{ border: "none" }}>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Lộ trình phù hợp cho cả bạn mới, trái ngành và nâng cao kỹ năng chuyên sâu</h5>
+                                        <p class="card-text">Chúng tôi tin rằng ai cũng có thể học lập trình từ đầu. Bằng chứng là 42% các bạn trái ngành tốt nghiệp tại ELearning đều làm việc rất tốt. Nhiều bạn mất căn bản, mất gốc đều được chúng tôi cung cấp một lộ trình bài bản để tự tin học tập và có ngay việc làm sau tốt nghiệp.</p>
+                                        <a href="#" class="btn btn-primary mt-2">Đăng kí</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+
+                                <div class="card">
+                                    <img className="card-img-top" style={{ objectFit: "cover" }} src="https://media.istockphoto.com/photos/portrait-of-smiling-diverse-people-raising-hands-at-seminar-picture-id1342228491?b=1&k=20&m=1342228491&s=170667a&w=0&h=rZuhcq_sbRYQIVWFfsDdqFi6XeQwcwR8gs7ZIlTrVQ8=" width={400} height={350} alt="" />
+                                </div>
                             </div>
                         </div>
-                        <div className='infoItemHome infoSmallItemB'>
-                            <div className='infoItemContent'>
-                                <h3>Hệ thống học tập</h3>
-                                <ul>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Tự động chấm điểm trắc nghiệm và đưa câu hỏi tùy theo mức độ học viên</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Thống kê lượt xem video, làm bài, điểm số theo chu kỳ</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Thống kê, so sánh khả năng học của các học viên cùng level để đưa ra mục tiêu học tập</span>
-                                    </li>
-                                </ul>
+                    </div>
+
+                    <div className="border rounded mt-2" style={{ borderColor: "gray" }}>
+                        <div className="row">
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <img className="card-img-top" style={{ objectFit: "cover" }} src="https://images.unsplash.com/photo-1532619187608-e5375cab36aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvdXJzZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" width={400} height={350} alt="" />
+                                </div>
                             </div>
-                        </div>
-                        <div className='infoItemHome infoSmallItemA'>
-                            <div className='infoItemContent'>
-                                <h3>Giảng viên</h3>
-                                <ul>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Tương tác cùng mentor và giảng viên qua phần thảo luận</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Review code và đưa ra các nhận xét góp ý</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Chấm điểm tương tác thảo luận giữa các học viên</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className='infoItemHome infoSmallItemC'>
-                            <div className='infoItemContent'>
-                                <h3>Chứng nhận</h3>
-                                <ul>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Chấm bài và có thể vấn đáp trực tuyến để review</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Hệ thống của chúng tôi cũng tạo ra cho bạn một CV trực tuyến độc đáo</span>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-check"></i>
-                                        <span>Kết nối CV của bạn đến với các đối tác của V learning</span>
-                                    </li>
-                                </ul>
+                            <div class="col-sm-6">
+                                <div class="card" style={{ border: "none" }}>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Tương tác thảo luận cùng Mentor và Giảng viên</h5>
+                                        <p class="card-text">Tương tác học tập qua phần thảo luận cùng Mentor và giảng viên. Hệ thống sẽ chấm điểm tương tác để giúp các học viên tăng cường kỹ năng hỗ trợ lẫn nhau. Các bài luyện tập và các dự án sẽ được Giảng viên cùng mentor chấm bài trực tiếp và nhận xét, review code để giúp học viên học hỏi các kinh nghiệm code. Giảng viên là các chuyên gia trong các tập đoàn phần mềm có kinh nghiệm, có khả năng truyền đạt tốt nhất, hiểu rõ các khó khăn của những bạn mới vào nghề.</p>
+                                        <a href="#" class="btn btn-primary mt-2">Đăng kí</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div>
+                    <div>
+                    </div>
+
+                </div >
                 {/* Course Popular */}
-                <div className='coursesHome'>
-                    <h6><a href="">Khóa học phổ biến</a></h6>
-                </div>
-                <div className='row mt-4'>
-                    {renderCoursePopular()}
-                </div>
-                {/* Course Student */}
-                <div className='mt-5'>
-                    <h6><a href="">Khóa học tham khảo</a></h6>
-                    <div className='row'>
-                        {renderCourseStudent()}
+                <div className="text-center">
+                    <h3>Khoá học phổ biến</h3>
+                    <div className='row mt-4'>
+                        {renderCoursePopular()}
                     </div>
                 </div>
                 {/* Course Student */}
-                <div className='mt-5'>
-                    <h6><a href="">Khóa học Front End React Js</a></h6>
+                <div className="container-a text-center mt-5">
+                    <h3><a href="">Khóa học tham khảo</a></h3>
+                    <div className="row">
+                        {renderCoures()}
+                    </div>
+                </div>
+                {/* Course Student */}
+                <div className='mt-5 text-center'>
+                    <h3><a href="">Khóa học Front End</a></h3>
                     <div className='row'>
                         {renderCourseReact()}
                     </div>
                 </div>
-            </div>
+            </div >
             {/* Box Number */}
-            <div className='boxNumberContainer mt-5'>
-                <div className='row'>
-                    <div className='col-lg-3 p-4 col-md-6'>
-                        <div className='boxNumber' >
-                            <div><img src={require("../../Assets/Img/imgIcon/003-students.png").default} className='imgIcon' alt="" /></div>
-                            <div className='textNumber'>
-                                <CountupNumber end='9000' />
-                            </div>
-                            <p className='textNumberTitle'>Học viên</p>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 p-4 col-md-6">
-                        <div className='boxNumber'>
-                            <div><img src={require("../../Assets/Img/imgIcon/001-timetable.png").default} className='imgIcon' alt="" /></div>
-                            <div className='textNumber'>
-                                <CountupNumber end='1000' />
-                            </div>
-                            <p className='textNumberTitle'>Khóa học</p>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 p-4 col-md-6">
-                        <div className='boxNumber'>
-                            <div><img src={require("../../Assets/Img/imgIcon/002-hourglass.png").default} className='imgIcon' alt="" /></div>
-                            <div className='textNumber'>
-                                <CountupNumber end='33200' />
-                            </div>
-                            <p className='textNumberTitle'>Giờ học</p>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 p-4 col-md-6">
-                        <div className='boxNumber'>
-                            <div><img src={require("../../Assets/Img/imgIcon/004-teacher.png").default} className='imgIcon' alt="" /></div>
-                            <div className='textNumber'>
-                                <CountupNumber end='400' />
-                            </div>
-                            <p className='textNumberTitle'>Giảng viên</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
+
 
             {/* Top Rate Instructor */}
             <div className='mt-5 instrutorContainer'>
@@ -486,9 +464,11 @@ export default function Home() {
                                 <span className='textReviewBot'>100 Đánh giá</span>
                             </div>
                         </div>
+
                         <div className="col-lg-2 col-md-3 col-sm-6 col-12">
                             <div className='instrutorContent'>
-                                <img src={require('../../Assets/Img/imgInstrutors/instrutor11.jpg').default} alt="" />
+                                <div className="card2"></div>
+                                <img src={'https://i.pinimg.com/originals/28/d2/e6/28d2e684e7859a0dd17fbd0cea00f8a9.jpg'} alt="" />
                                 <h6>David Ngô Savani</h6>
                                 <div className='textReviewRole'>
                                     <p>Chuyên gia lĩnh vực</p>
@@ -517,37 +497,7 @@ export default function Home() {
                         <div className='layDotRight'></div>
                     </div>
                 </div>
-            </div>
-
-            {/* Course Online */}
-            <div className='review mt-5'>
-                <div className='reviewStudent'>
-                    {/* <h6>Cảm nhận học viên</h6> */}
-                    <div className='triangleTopRight'></div>
-                    <div className='smallBox smallboxLeftTop'></div>
-                    <div className='smallBox smallboxRightBottom'></div>
-                    <div className='smallBox smallboxRightTop'></div>
-                    <div className='smallBox smallboxLeftBottom'></div>
-                    <div className='row'>
-                        <div className="col-md-6">
-                            <div className='reviewImg'>
-                                <div className='bgStudentReview'></div>
-                                <img src={require('../../Assets/Img/ImgAvatar/avatarReview.png').default} alt="" />
-                            </div>
-                        </div>
-                        <div className="col-md-6 quoteRight">
-                            <blockquote className='textQoute'>
-                                <q>
-                                    Chương trình giảng dạy được biên soạn dành riêng cho các bạn Lập trình từ trái ngành hoặc đã có kiến thức theo cường độ cao, luôn được tinh chỉnh và tối ưu hóa theo thời gian bởi các thành viên sáng lập và giảng viên dày kinh nghiệm.Thực sự rất hay và hấp dẫn
-                                </q>
-                            </blockquote>
-                            <p>Nhi Dev</p>
-                            <span className=''>Học viên xuất sắc</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            </div>            
 
         </>
     )

@@ -1,7 +1,9 @@
 /* info Left */
-.infoPageContent {
-    padding: 50px;
+.infoPageContent , .desktop {
+    padding: 100px;
 }
+
+
 
 .infoLeft {
     display: flex;
@@ -233,9 +235,10 @@
 
 .imgNet {
     object-fit: fill;
+    background-size: cover;
     width: 100%;
-    height: 200px;
-    min-height: 200px;
+    height: 100px;
+    min-height: 100px;
 }
 
 .iconNetCard span {
@@ -289,6 +292,10 @@
 .modal-open .modal::-webkit-scrollbar{
     width: 0 !important;
     display: none;
+}
+
+.text-color {
+    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
 }
 
 /* Mobie */

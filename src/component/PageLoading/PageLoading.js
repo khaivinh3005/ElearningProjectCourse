@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import './PageLoading.css'
 export default function PageLoading() {
     const {loadingGlobal} = useSelector(state => state.IsLoadingReducer)
-    // console.log(loadingGlobal);
+    console.log(loadingGlobal);
     if(loadingGlobal){
         return (
             <>

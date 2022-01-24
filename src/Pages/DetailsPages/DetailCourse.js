@@ -39,7 +39,7 @@ export default function DetailCourse(props) {
                                 </div>
                                 <div className='subCard'>
                                     <div className='subCardHead'>
-                                        <img src={require('../../Assets/Img/ImgAvatar/emoji.png').default} alt="" />
+                                        <img src={'https://i.pinimg.com/originals/28/d2/e6/28d2e684e7859a0dd17fbd0cea00f8a9.jpg'} alt="" />
                                         <span className='ml-1 colorCardTitle'>Elun Musk Ricard</span>
                                     </div>
                                     <h6>BOOTCAMP - LẬP TRÌNH FULL STACK TỪ ZERO ĐẾN CÓ VIỆC</h6>
@@ -73,10 +73,6 @@ export default function DetailCourse(props) {
     return (
         <>
             <section className='detailCoures'>
-                <div className='titleCourse'>
-                    <h3>Thông tin khóa học</h3>
-                    <p>Tiến lên và không chần chừ !!!</p>
-                </div>
                 <div className='detailCouresContent'>
                     <div className='row'>
                         <div className="col-lg-8 col-md-7">
@@ -85,9 +81,9 @@ export default function DetailCourse(props) {
                                 <div className="col-lg-4">
                                     <div className='detailCourseIntro'>
                                         <div>
-                                            <img src={require('../../Assets/Img/imgInstrutors/instrutor5.jpg').default} alt="" />
+                                            <img src={'https://i.pinimg.com/originals/28/d2/e6/28d2e684e7859a0dd17fbd0cea00f8a9.jpg'} alt="" />
                                         </div>
-                                        <div className='instrutorTitle'>
+                                        <div className='instrutorTitle mb-4'>
                                             <p>Giảng viên</p>
                                             <p>Robert Ngô Ngọc</p>
                                         </div>

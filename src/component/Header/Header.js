@@ -2,15 +2,28 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Link, useHistory } from 'react-router-dom'
 import { courseCategory } from '../../Redux/action/CourseAction'
+import { Input, Space } from 'antd';
+import { AudioOutlined } from '@ant-design/icons';
 import './Header.css'
 
 export default function Header(props) {
     let keyInput = useRef(null)
-    let keyInputMobile = useRef(null) 
+    let keyInputMobile = useRef(null)
     let login = localStorage.getItem('credentials')
     const history = useHistory()
     const dispatch = useDispatch()
     const courseCate = useSelector(state => state.CourseReducer.coursesCategary)
+    const { Search } = Input;
+    const suffix = (
+        <AudioOutlined
+            style={{
+                fontSize: 16,
+                color: '#1890ff',
+            }}
+        />
+    );
+
+    const onSearch = value => console.log(value);
 
     // Login
     const { credentials } = useSelector(state => state.UserReducer)
@@ -80,7 +93,7 @@ export default function Header(props) {
                 </div>
             )
         } else {
-            return <button className='btnGlobal'><NavLink to='/login'>Đăng nhập</NavLink></button>
+            return <NavLink className="text-danger"to='/login'>Vui lòng đăng nhập</NavLink>
         }
     }
 
@@ -113,13 +126,13 @@ export default function Header(props) {
         <>
             <section className='header'>
                 <div className='headerLeft'>
-                    <NavLink to='/' className='textLogo'>
-                        <span className='textE'>V</span>learning <i className="far fa-keyboard iconLogo"></i></NavLink>
+                    <NavLink to='/'>
+                        <span className='text-success h1'><i class="fab fa-connectdevelop"></i>E Learning Technology</span></NavLink>
                     <form onSubmit={handleSubmitSearch} ><input ref={keyInput} action="#" className='searchForm' type="text" placeholder="Tìm kiếm" /></form>
                 </div>
                 <div className='headerRight'>
                     <ul className='menuHeader'>
-                        <li className='courseCate'><i className="fas fa-bars mr-1"></i><NavLink to="/trangchu">Danh mục</NavLink>
+                        <li className='courseCate'><i className="fas fa-bars mr-1"></i><NavLink to="/trangchu">Danh sách khoá học</NavLink>
                             <ul className='courseCateList'>
                                 {renderCourseCate()}
                             </ul>
