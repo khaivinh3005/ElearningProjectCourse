@@ -36,9 +36,9 @@ function App() {
         <HomeTemplate path="/" exact component={Home} />
         <HomeTemplate path="/trangchu" exact component={Home} />
         <HomeTemplate path="/khoahoc" exact component={Course} />
-        <HomeTemplate path="/blog" exact component={Blog} />
+        {/* <HomeTemplate path="/blog" exact component={Blog} /> */}
         <HomeTemplate path="/sukien" exact component={Events} />
-        <HomeTemplate path="/thongtin" exact component={About} />
+        {/* <HomeTemplate path="/thongtin" exact component={About} /> */}
         <HomeTemplate path="/danhmuckhoahoc/:maDanhMuc" exact component={CategoryCourses} />
         <HomeTemplate path="/timkiem/:tuKhoa" exact component={SearchPage} />
         <HomeTemplate path="/chitiet/:maKhoaHoc" exact component={DetailCourse} />

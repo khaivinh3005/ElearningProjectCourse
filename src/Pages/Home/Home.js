@@ -373,7 +373,7 @@ export default function Home() {
             </div >
 
             {/* Box Number */}
-            <div className="d-flex justify-content-center mt-5">
+            <div className="d-flex justify-content-center mt-5 mb-3">
 
                 <div className="row">
                     <div className="col-12 text-center">

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState , useMemo } from 'react'
+import React, { useEffect, useRef, useState , useMemo  } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Link, useHistory } from 'react-router-dom'
-import { courseCategory } from '../../Redux/action/CourseAction'
+import { courseCategory , ChangeTheme } from '../../Redux/action/CourseAction'
 import { Input, Space } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import './Header.css'
@@ -11,11 +11,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { TryRounded } from '@mui/icons-material';
 
 export default function Header(props) {
     let keyInput = useRef(null)
     let keyInputMobile = useRef(null)
-    let login = localStorage.getItem('credentials')
+    let login = localStorage.getItem('credentials');
+    let theme = useSelector((state) => state.ChangeTheme.theme);
     const history = useHistory()
     const dispatch = useDispatch()
     const courseCate = useSelector(state => state.CourseReducer.coursesCategary)
@@ -166,7 +168,10 @@ export default function Header(props) {
     }
 
     const renderSwitch = () => {
-        
+        dispatch({
+            type : 'CHANGETHEME',
+            data : true
+        })
     }
 
     useEffect(() => {
@@ -182,7 +187,7 @@ export default function Header(props) {
 
     return (
         <>
-            <section className={`header ${light ?  'bg-dark text-white': "bg-white"}`}>
+            <section className={`header ${theme ? 'bg-dark' : 'bg-white'}`}>
                 <div className='headerLeft'>
                     <NavLink to='/'>
                         <span className='text-success h1'><i class="fab fa-connectdevelop"></i>E Learning Technology</span></NavLink>
@@ -196,21 +201,21 @@ export default function Header(props) {
                             </ul>
                         </li>
                         <li><NavLink to="/khoahoc">Khóa học</NavLink></li>
-                        <li><NavLink to="/blog">Blog</NavLink></li>
-                        <li className='eventHeader courseCate'><NavLink to="/sukien">Sự kiện</NavLink>
+                        {/* <li><NavLink to="/blog">Blog</NavLink></li> */}
+                        {/* <li className='eventHeader courseCate'><NavLink to="/sukien">Sự kiện</NavLink>
                             <ul className='courseCateList'>
                                 <li><NavLink to="/sukien/lastYear">Sự kiện Sale Cuối Năm</NavLink></li>
                                 <li><NavLink to="/sukien/Noel">Sự kiện Giáng sinh</NavLink></li>
                                 <li><NavLink to="/sukien/Noel">Sự kiện Noel</NavLink></li>
                             </ul>
-                        </li>
-                        <li><NavLink to="/thongtin">Thông tin</NavLink></li>
+                        </li> */}
+                        {/* <li><NavLink to="/thongtin">Thông tin</NavLink></li> */}
                         <li> 
                         <FormGroup className="mt-2">
                             <FormControlLabel
                                 control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
                                 label=""
-                                onClick={() => renderSwitch()}
+                                // onClick={() =>{renderSwitch()}}
                             />
                         </FormGroup></li>
                     </ul>

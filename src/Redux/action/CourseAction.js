@@ -4,6 +4,14 @@ import {GET_COURSE_LIST_NOT_REGISTER, GET_COURSE_LIST_CONFIRMED,GET_COURSE_LIST_
 import { LOADING_COMPONENT_HIDE, LOADING_COMPONENT_SHOW, RENDER_PAGE_HIDE, RENDER_PAGE_SHOW } from "../types/isLoadingTypes";
 import Swal from "sweetalert2";
 // get Category
+export const ChangeTheme = (dispatch) => {
+    const action = {
+        type : 'CHANGETHEME',
+        data : 'bg-white'
+    }
+    dispatch(action)
+}
+
 export const courseCategory = async (dispatch) => {
     try {
         let result = await http.get('/api/QuanLyKhoaHoc/LayDanhMucKhoaHoc')

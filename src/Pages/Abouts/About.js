@@ -6,7 +6,7 @@ export default function About() {
             <section className='About'>
                 <div className='sliderAbout'>
                     <div className='sliderContentAbout'>
-                        <p className='titleSliderAbout'>V learning học là vui </p>
+                        <p className='titleSliderAbout'>E-learning học là vui </p>
                         <h6>Cùng nhau khám phá nhưng điều mới mẻ</h6>
                         <p>Học đi đôi với hành</p>
                     </div>
@@ -14,7 +14,7 @@ export default function About() {
                 <div className='AboutItem'>
                     <div className='row'>
                         <div className='col-md-6'>
-                            <h6>V learning ?</h6>
+                            <h6>E learning ?</h6>
                             <h5>Nơi hội tụ kiến thức</h5>
                             <p>Đây là nền tảng giảng dạy và học tập trực tuyến được xây dựng để hỗ trợ phát triển giáo dục trong thời đại công nghiệp 4.0, được xây dựng dựa trên cơ sở quan sát toàn bộ các nhu cầu cần thiết của một lớp học offline. Từ đó đáp ứng và đảm bảo cung cấp các công cụ toàn diện, dễ sử dụng cho giáo viên và học sinh, giúp tạo nên một lớp học trực tuyến thú vị và hấp dẫn.</p>
                         </div>

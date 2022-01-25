@@ -53,10 +53,6 @@ export default function Course() {
     return (
         <>
             <section>
-                <div className='titleCourse'>
-                    <h3>Khóa học</h3>
-                    <p>Bắt đầu hành trình nào!!!</p>
-                </div>
                 <div className='coursesContainer'>
                     <div className='row'>
                         <div className="col-md-2 col-sm-4 coursesBoxItem">
