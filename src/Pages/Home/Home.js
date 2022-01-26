@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import CountupNumber from '../../component/CountUp/CountupNumber'
 import { getListCourse } from '../../Redux/action/CourseAction';
 import './Home.css'
@@ -31,7 +31,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 
-export default function Home() {
+export default function Home(props) {
     const { coursesList } = useSelector(state => state.CourseReducer)
     const [value, setValue] = React.useState(4);
     const [expanded, setExpanded] = useState(false);
@@ -207,9 +207,14 @@ export default function Home() {
     }
 
     useEffect(() => {
+        if(localStorage.getItem("credentials")){
+            props.history.push("/trangchu")
+        }else {
+           return props.history.push("/login")
+        }
         dispatch(getListCourse)
-    }, [])
 
+    }, [])
     return (
         <>
             <div className='homePage'>
